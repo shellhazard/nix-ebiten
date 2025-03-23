@@ -5,8 +5,8 @@
     { self }:
     {
       templates = {
-        ebiten = {
-          path = ./nix;
+        default = {
+          path = ./template;
           description = "Ebitengine template";
           welcomeText = ''
             # Getting started
@@ -14,7 +14,6 @@
             - Run `go run cmd/hello/main.go`
           '';
         };
-        defaultTemplate = self.templates.ebiten;
       };
     };
 }
