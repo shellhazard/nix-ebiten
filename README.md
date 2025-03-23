@@ -4,7 +4,7 @@ This flake contains a template to use for developing games with [Ebitengine](htt
 
 ## Usage
 
-Create a new flake in the current using this template:
+Create a new flake in the current directory using this template:
 ```sh
 nix flake init -t github:shellhazard/nix-ebiten
 ```
