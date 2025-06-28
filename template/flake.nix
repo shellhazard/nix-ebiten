@@ -27,9 +27,8 @@
           xorg.libXrandr
           xorg.libXxf86vm
         ];
-      in
-      {
-        packages.default = pkgs.buildGoModule {
+
+        attrs = {
           pname = "ebitengine-hello";
           version = self.rev or "unknown";
           src = self;
@@ -45,12 +44,16 @@
             makeWrapper
           ];
           buildInputs = buildDeps;
-
+        };
+      in
+      {
+        packages.default = pkgs.buildGoModule attrs // {
           postInstall = with pkgs; ''
             wrapProgram $out/bin/hello \
               --set LD_LIBRARY_PATH '${lib.getLib libGL}/lib:${lib.getLib libGL}/lib:$LD_LIBRARY_PATH'
           '';
         };
+        packages.nixgl = pkgs.buildGoModule attrs;
 
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
